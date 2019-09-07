@@ -1,7 +1,4 @@
 let array = [];
-let i = 0;
-let j = 0;
-
 
 function setup() {
     createCanvas(windowWidth, windowHeight);
@@ -16,20 +13,19 @@ function setup() {
 function draw() {
     background(0);
 
-
-    // bubble sort
-    if (i < array.length) {
-        for (let i = 0; i < array.length - j - 1; i++) {
-            let a = array[i];
-            let b = array[i + 1];
-            if (a > b) {
-                swap(array, i, i + 1);
+    // selecton sort
+    for (let i = 0; i < array.length; i++) {
+        let min = i;
+        for (var j = i + 1; j < array.length; j++) {
+            if (array[j] < array[i]) {
+                min = j;
             }
         }
-    } else {
-        noLoop();
+        if (i !== min) {
+            swap(array, i, min);
+        }
     }
-    i++;
+
 
     // draw it
     for (let i = 0; i < array.length; i++) {
@@ -37,6 +33,7 @@ function draw() {
         line(i, height, i, height - array[i]);
     }
 }
+
 
 function swap(array, num1, num2) {
     let temp = array[num1];
