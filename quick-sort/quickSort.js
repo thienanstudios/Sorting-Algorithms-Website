@@ -13,6 +13,7 @@ function setup() {
   quickSort(values, 0, values.length - 1);
 }
 
+// whole func is qs
 async function quickSort(arr, start, end) {
   if (start >= end) {
     return;
@@ -20,39 +21,50 @@ async function quickSort(arr, start, end) {
   let index = await partition(arr, start, end);
   states[index] = -1;
 
+
   await Promise.all([
     quickSort(arr, start, index - 1),
     quickSort(arr, index + 1, end)
   ]);
 }
 
+
 async function partition(arr, start, end) {
+  // for visuals
   for (let i = start; i < end; i++) {
     states[i] = 1;
   }
+  states[pivotIndex] = 0;
 
+  //part of sort method
   let pivotValue = arr[end];
   let pivotIndex = start;
-  states[pivotIndex] = 0;
   for (let i = start; i < end; i++) {
     if (arr[i] < pivotValue) {
       await swap(arr, i, pivotIndex);
+      // visual
       states[pivotIndex] = -1;
+      //alg
       pivotIndex++;
+      //visual
       states[pivotIndex] = 0;
     }
   }
+  //alg
   await swap(arr, pivotIndex, end);
 
+  //visual
   for (let i = start; i < end; i++) {
     if (i != pivotIndex) {
       states[i] = -1;
     }
   }
 
+  // alg
   return pivotIndex;
 }
 
+// visuals
 function draw() {
   background(0);
 
