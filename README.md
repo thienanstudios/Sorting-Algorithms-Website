@@ -2,4 +2,4 @@
 
 Bubble Sort:
 
-![(bubble-sort/bubble-sort.gif)
+![](bubble-sort/bubble-sort.gif)
