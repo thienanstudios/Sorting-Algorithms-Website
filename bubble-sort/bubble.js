@@ -2,10 +2,11 @@ let array = [];
 let i = 0;
 let j = 0;
 
+let w = 7.5;
 
 function setup() {
     createCanvas(windowWidth, windowHeight);
-    array = new Array(width);
+    array = new Array(floor(width / w));
 
     for (let i = 0; i < array.length; i++) {
         array[i] = random(height);
@@ -34,7 +35,7 @@ function draw() {
     // draw it
     for (let i = 0; i < array.length; i++) {
         stroke(300);
-        line(i, height, i, height - array[i]);
+        rect(i * w, height - array[i], w, array[i]);
     }
 }
 
